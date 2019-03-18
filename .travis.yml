@@ -3,20 +3,20 @@ services:
 - docker
 
 before_install:
-- docker build -t huy/react-test -f ./client/Dockerfile.dev ./client
+- docker build -t dinhhuyams/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-- docker run huy/react-test npm test -- --coverage
+- docker run dinhhuyams/react-test npm test -- --coverage
 
 after_success:
-- docker build -t huy/multi-client ./client
-- docker build -t huy/multi-nginx ./nginx
-- docker build -t huy/multi-server ./server
-- docker build -t huy/multi-worker ./worker
+- docker build -t dinhhuyams/multi-client ./client
+- docker build -t dinhhuyams/multi-nginx ./nginx
+- docker build -t dinhhuyams/multi-server ./server
+- docker build -t dinhhuyams/multi-worker ./worker
 # Log in to the docker CLI
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 # Take those images and push them to docker hub
-- docker push huy/multi-client
-- docker push huy/multi-nginx
-- docker push huy/multi-server
-- docker push huy/multi-worker
+- docker push dinhhuyams/multi-client
+- docker push dinhhuyams/multi-nginx
+- docker push dinhhuyams/multi-server
+- docker push dinhhuyams/multi-worker
